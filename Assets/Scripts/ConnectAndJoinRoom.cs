@@ -21,5 +21,6 @@ public class ConnectAndJoinRoom : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("You are joined the room");
+        PhotonNetwork.LoadLevel(1);
     }
 }

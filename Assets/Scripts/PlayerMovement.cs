@@ -1,24 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {
     NavMeshAgent _agent;
     [SerializeField] LayerMask _layer;
-    PhotonView View;
+    [SerializeField] PhotonView View;
     Animator _anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        View = GetComponent<PhotonView>();
-        if (!View)
-        {
-            Debug.LogError("PhotonView Is Missing");
-        }
         _anim = GetComponent<Animator>();
         if (!_anim)
         {
@@ -29,7 +23,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (!View.IsMine)
+        /*if (!View.IsMine)
         {
             return;
         }
@@ -39,15 +33,25 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             //RaycastHit hit;
             _anim.SetBool("Dance", true);
 
-            /*if (Physics.Raycast(Ray, out hit, _layer))
+            if (Physics.Raycast(Ray, out hit, _layer))
             {
                 _agent.SetDestination(hit.point);
                 _anim.SetBool("Run", true);
-            }*/
+            }
         }
         if (Input.GetMouseButtonDown(1))
         {
             _anim.SetBool("Dance", false);
-        }
+        }*/
+    }
+
+    public void StartDance()
+    {
+        _anim.SetBool("Dance", true);
+    }
+
+    public void StopDance()
+    {
+        _anim.SetBool("Dance", false);
     }
 }
